@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agência 5G — Marketing, Performance e Automação</title>
+  <meta name="description" content="Agência digital brasileira baseada em Guarapuava, PR. Marketing, Performance e Automação com IA para restaurantes, clínicas, empresas locais e concessionárias." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C8001E;
+      --red-light: #e0001f;
+      --red-dim: rgba(200, 0, 30, 0.15);
+      --black: #000000;
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #181818;
+      --white: #ffffff;
+      --gray: #888888;
+      --gray-light: #cccccc;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--red-light) !important; }
+
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,0,30,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(200,0,30,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red-dim);
+      border: 1px solid rgba(200,0,30,0.3);
+      color: var(--red-light);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    h1 .highlight { color: var(--red); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--gray-light);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(200,0,30,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 72px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+
+    .stat-num span { color: var(--red); }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--gray-light);
+      font-size: 17px;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; }
+
+    /* ── SOBRE ── */
+    #sobre { background: var(--dark); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre-text p {
+      color: var(--gray-light);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .sobre-text p strong { color: var(--white); }
+
+    .sobre-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      color: var(--gray-light);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tag.red {
+      background: var(--red-dim);
+      border-color: rgba(200,0,30,0.3);
+      color: var(--red-light);
+    }
+
+    .sobre-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .sobre-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.3s;
+    }
+
+    .sobre-card:hover { border-color: var(--red); }
+
+    .sobre-card:first-child {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .sobre-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--red-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .sobre-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sobre-card p {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── PILARES ── */
+    #pilares { background: var(--black); }
+
+    .pilares-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 64px;
+    }
+
+    .pilares-header .section-desc { margin: 0 auto; }
+
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pilar-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .pilar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .pilar-card:hover::before { transform: scaleX(1); }
+
+    .pilar-card:hover {
+      border-color: rgba(200,0,30,0.3);
+      transform: translateY(-4px);
+    }
+
+    .pilar-num {
+      font-size: 64px;
+      font-weight: 900;
+      color: rgba(200,0,30,0.12);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -3px;
+    }
+
+    .pilar-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .pilar-card > p {
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .pilar-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pilar-items li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray-light);
+    }
+
+    .pilar-items li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── RETINA ── */
+    #retina { background: var(--dark); }
+
+    .retina-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .retina-left h2 { margin-bottom: 20px; }
+
+    .retina-left p {
+      color: var(--gray-light);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .retina-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .retina-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      transition: border-color 0.3s;
+    }
+
+    .retina-item:hover { border-color: rgba(200,0,30,0.3); }
+
+    .retina-letter {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      min-width: 32px;
+    }
+
+    .retina-item-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .retina-item-body p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── SISTEMA VENDA ACELERADA ── */
+    #sistema { background: var(--black); }
+
+    .sistema-header {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .sistema-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .sistema-flow::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), rgba(200,0,30,0.2));
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .flow-num {
+      width: 80px;
+      height: 80px;
+      background: var(--dark2);
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--red);
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+
+    .flow-step:hover .flow-num {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 0 32px rgba(200,0,30,0.5);
+    }
+
+    .flow-step h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .flow-step p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── STACK ── */
+    #stack { background: var(--dark); }
+
+    .stack-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 64px;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .stack-item {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .stack-item:hover {
+      border-color: rgba(200,0,30,0.3);
+      transform: translateY(-4px);
+    }
+
+    .stack-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .stack-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stack-item p {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* ── CASES ── */
+    #cases { background: var(--black); }
+
+    .cases-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 64px;
+    }
+
+    .case-card {
+      background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    .case-badge {
+      display: inline-block;
+      background: var(--red-dim);
+      border: 1px solid rgba(200,0,30,0.3);
+      color: var(--red-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .case-card h3 {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .case-card .case-subtitle {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .case-card .case-desc {
+      color: var(--gray-light);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .case-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .metric {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .metric-val span { color: var(--red); }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    #contato {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      background: linear-gradient(135deg, var(--dark2), var(--dark3));
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(200,0,30,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-inner p {
+      color: var(--gray-light);
+      font-size: 17px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #20c05c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 48px 5%;
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: white;
+    }
+
+    .footer-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .footer-logo-text span { color: var(--red); }
+
+    .footer-info {
+      text-align: center;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .footer-info p:first-child { margin-bottom: 4px; }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 6%; }
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: rgba(0,0,0,0.97);
+        padding: 32px 6%;
+        gap: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sobre-grid,
+      .retina-grid,
+      .case-card { grid-template-columns: 1fr; gap: 40px; }
+
+      .pilares-grid { grid-template-columns: 1fr; }
+
+      .sistema-flow {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .sistema-flow::before { display: none; }
+
+      .stack-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .sobre-visual { grid-template-columns: 1fr; }
+
+      .sobre-card:first-child { grid-column: auto; }
+
+      .hero-stats { gap: 32px; }
+
+      .case-card { padding: 32px 24px; }
+
+      .cta-inner { padding: 48px 24px; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .sistema-flow { grid-template-columns: 1fr; }
+      .case-metrics { grid-template-columns: 1fr; }
+      .sobre-visual { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">5G</div>
+      <span class="nav-logo-text">Agência <span>5G</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#pilares">Serviços</a></li>
+      <li><a href="#retina">Metodologia</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#contato" class="nav-cta">Falar com a Agência</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Guarapuava, PR — Marketing com IA</div>
+      <h1>
+        Marketing que<br />
+        <span class="highlight">gera resultado.</span><br />
+        Sem achismo.
+      </h1>
+      <p class="hero-sub">
+        Planejamento estratégico, execução com IA e otimização contínua para negócios que querem crescer de verdade — com métricas que comprovam.
+      </p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary">Quero escalar meu negócio</a>
+        <a href="#pilares" class="btn-secondary">Ver como funciona</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">3<span>x</span></div>
+          <div class="stat-label">Retorno médio em tráfego pago</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span>+</span>50<span>%</span></div>
+          <div class="stat-label">Crescimento em alcance orgânico</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Foco em resultado mensurável</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-text fade-in">
+          <div class="section-label">Quem somos</div>
+          <h2>Agência digital que usa <span style="color:var(--red)">IA antes de virar tendência</span></h2>
+          <p>
+            Somos a <strong>Agência 5G</strong>, baseada em <strong>Guarapuava, PR</strong>, especializada em Marketing, Performance e Automação para negócios locais e regionais que querem crescer com estratégia.
+          </p>
+          <p>
+            Nossa metodologia vai do <strong>Ponto A ao Ponto B</strong>: diagnóstico completo do seu negócio, execução precisa e otimização baseada em dados reais — CPA, ROAS, CAC e LTV são nossa língua.
+          </p>
+          <p>
+            Usamos <strong>super-agentes de IA</strong> para escalar operações que antes exigiriam equipes inteiras. Tecnologia a favor do seu resultado.
+          </p>
+          <div class="sobre-tags">
+            <span class="tag red">Marketing Digital</span>
+            <span class="tag red">Performance</span>
+            <span class="tag red">Automação com IA</span>
+            <span class="tag">Guarapuava, PR</span>
+            <span class="tag">Negócios Locais</span>
+          </div>
+        </div>
+        <div class="sobre-visual fade-in">
+          <div class="sobre-card">
+            <div class="sobre-card-icon">🎯</div>
+            <div>
+              <h4>Metodologia Ponto A → B</h4>
+              <p>Diagnóstico real, estratégia clara e execução que entrega resultado mensurável.</p>
+            </div>
+          </div>
+          <div class="sobre-card">
+            <div class="sobre-card-icon">🤖</div>
+            <div>
+              <h4>IA na operação</h4>
+              <p>Super-agentes que escalam a produção de conteúdo e automações.</p>
+            </div>
+          </div>
+          <div class="sobre-card">
+            <div class="sobre-card-icon">📊</div>
+            <div>
+              <h4>Dados que falam</h4>
+              <p>CPA, ROAS, CAC, LTV — tomamos decisões com números, não intuição.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section id="pilares">
+    <div class="container">
+      <div class="pilares-header fade-in">
+        <div class="section-label">Como atuamos</div>
+        <h2>Três pilares, <span style="color:var(--red)">um resultado</span></h2>
+        <p class="section-desc">Nossa metodologia completa cobre desde o planejamento até a otimização contínua da sua operação de marketing.</p>
+      </div>
+      <div class="pilares-grid">
+        <div class="pilar-card fade-in">
+          <div class="pilar-num">01</div>
+          <h3>Planejamento Estratégico</h3>
+          <p>Diagnóstico completo do seu negócio e construção do caminho do Ponto A ao Ponto B com clareza e precisão.</p>
+          <ul class="pilar-items">
+            <li>Diagnóstico de mercado e posicionamento</li>
+            <li>Definição de personas e jornada do cliente</li>
+            <li>Mapeamento de oportunidades e concorrência</li>
+            <li>Estratégia de canais e investimento</li>
+          </ul>
+        </div>
+        <div class="pilar-card fade-in">
+          <div class="pilar-num">02</div>
+          <h3>Execução Operacional</h3>
+          <p>Produção e distribuição de conteúdo, copy persuasivo, tráfego pago e funis de conversão rodando a todo vapor.</p>
+          <ul class="pilar-items">
+            <li>Conteúdo e copy com metodologia RETINA</li>
+            <li>Tráfego pago (Meta Ads + Google Ads)</li>
+            <li>Funis de vendas e automação de leads</li>
+            <li>Gestão de redes sociais e presença digital</li>
+          </ul>
+        </div>
+        <div class="pilar-card fade-in">
+          <div class="pilar-num">03</div>
+          <h3>Otimização Contínua</h3>
+          <p>Análise constante das métricas que importam para escalar o que funciona e cortar o que não gera retorno.</p>
+          <ul class="pilar-items">
+            <li>Análise de CPA, ROAS, CAC e LTV</li>
+            <li>Testes A/B e otimização de criativos</li>
+            <li>Relatórios transparentes e acionáveis</li>
+            <li>Escalada inteligente com IA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETINA -->
+  <section id="retina">
+    <div class="container">
+      <div class="retina-grid">
+        <div class="retina-left fade-in">
+          <div class="section-label">Metodologia exclusiva</div>
+          <h2>Método <span style="color:var(--red)">RETINA</span></h2>
+          <p>
+            Nossa metodologia proprietária de conteúdo que guia cada peça produzida para a 5G. Cada letra representa um pilar que transforma conteúdo em conexão real — e conexão real em venda.
+          </p>
+          <a href="#contato" class="btn-primary">Quero aplicar o RETINA no meu negócio</a>
+        </div>
+        <div class="retina-items fade-in">
+          <div class="retina-item">
+            <div class="retina-letter">R</div>
+            <div class="retina-item-body">
+              <h4>Relacionamento</h4>
+              <p>Conteúdo que cria vínculo genuíno com a audiência antes de vender.</p>
+            </div>
+          </div>
+          <div class="retina-item">
+            <div class="retina-letter">E</div>
+            <div class="retina-item-body">
+              <h4>Engajamento</h4>
+              <p>Formatos e hooks que geram interação real e ampliam alcance orgânico.</p>
+            </div>
+          </div>
+          <div class="retina-item">
+            <div class="retina-letter">T</div>
+            <div class="retina-item-body">
+              <h4>Transformação</h4>
+              <p>Narrativa de mudança que conecta o problema do cliente à solução do negócio.</p>
+            </div>
+          </div>
+          <div class="retina-item">
+            <div class="retina-letter">I</div>
+            <div class="retina-item-body">
+              <h4>Interação</h4>
+              <p>Estímulo à conversa, comentários e compartilhamentos que aumentam o alcance.</p>
+            </div>
+          </div>
+          <div class="retina-item">
+            <div class="retina-letter">N</div>
+            <div class="retina-item-body">
+              <h4>Nível de Consciência</h4>
+              <p>Conteúdo segmentado por estágio do funil — do frio ao pronto para comprar.</p>
+            </div>
+          </div>
+          <div class="retina-item">
+            <div class="retina-letter">A</div>
+            <div class="retina-item-body">
+              <h4>Autoridade</h4>
+              <p>Posicionamento constante como referência no nicho e na região.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SISTEMA VENDA ACELERADA -->
+  <section id="sistema">
+    <div class="container">
+      <div class="sistema-header fade-in">
+        <div class="section-label">Sistema proprietário</div>
+        <h2>Sistema <span style="color:var(--red)">Venda Acelerada 5G</span></h2>
+        <p class="section-desc">Nossa metodologia de prospecção ativa que transforma desconhecidos em clientes qualificados com previsibilidade.</p>
+      </div>
+      <div class="sistema-flow">
+        <div class="flow-step fade-in">
+          <div class="flow-num">1</div>
+          <h4>Mapeamento</h4>
+          <p>Identificamos os perfis ideais de clientes na sua região com critérios de qualificação precisos.</p>
+        </div>
+        <div class="flow-step fade-in">
+          <div class="flow-num">2</div>
+          <h4>Conexão</h4>
+          <p>Primeiro contato estratégico com abordagem personalizada — sem spam, com contexto.</p>
+        </div>
+        <div class="flow-step fade-in">
+          <div class="flow-num">3</div>
+          <h4>Nutrição</h4>
+          <p>Sequência de conteúdo e follow-up que aquece o lead até o momento certo de oferta.</p>
+        </div>
+        <div class="flow-step fade-in">
+          <div class="flow-num">4</div>
+          <h4>Conversão</h4>
+          <p>Reunião de diagnóstico com proposta consultiva e fechamento de alto valor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="container">
+      <div class="stack-header fade-in">
+        <div class="section-label">Tecnologia</div>
+        <h2>Stack de <span style="color:var(--red)">ferramentas</span></h2>
+        <p class="section-desc" style="margin:0 auto">As melhores ferramentas do mercado, integradas e potencializadas por IA.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-item fade-in">
+          <div class="stack-icon">📘</div>
+          <h4>Notion</h4>
+          <p>Gestão e documentação dos projetos</p>
+        </div>
+        <div class="stack-item fade-in">
+          <div class="stack-icon">☁️</div>
+          <h4>Google Drive</h4>
+          <p>Armazenamento e colaboração</p>
+        </div>
+        <div class="stack-item fade-in">
+          <div class="stack-icon">📘</div>
+          <h4>Meta Ads</h4>
+          <p>Tráfego pago no Facebook e Instagram</p>
+        </div>
+        <div class="stack-item fade-in">
+          <div class="stack-icon">🔍</div>
+          <h4>Google Ads</h4>
+          <p>Anúncios de busca e display</p>
+        </div>
+        <div class="stack-item fade-in">
+          <div class="stack-icon">⚡</div>
+          <h4>n8n + IA</h4>
+          <p>Automações e super-agentes inteligentes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases">
+    <div class="container">
+      <div class="cases-header fade-in">
+        <div class="section-label">Cases de sucesso</div>
+        <h2>Resultados <span style="color:var(--red)">reais</span></h2>
+        <p class="section-desc" style="margin:0 auto">Clientes que escalaram com a metodologia 5G.</p>
+      </div>
+      <div class="case-card fade-in">
+        <div>
+          <span class="case-badge">Cliente ativo</span>
+          <h3>Pigalle</h3>
+          <p class="case-subtitle">Hamburgueria Premium — Guarapuava & Ponta Grossa, PR</p>
+          <p class="case-desc">
+            Gestão completa de presença digital para uma das hamburguerias premium da região. Estratégia de conteúdo com metodologia RETINA, tráfego pago segmentado para o público local e automação de relacionamento com clientes para manter o salão cheio.
+          </p>
+        </div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val"><span>+</span>3x</div>
+            <div class="metric-label">Engajamento no Instagram</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val"><span>+</span>40<span>%</span></div>
+            <div class="metric-label">Crescimento de alcance</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">2<span>x</span></div>
+            <div class="metric-label">Retorno em tráfego pago</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val"><span>#</span>1</div>
+            <div class="metric-label">Posicionamento local no nicho</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO / CTA -->
+  <section id="contato">
+    <div class="container">
+      <div class="cta-inner fade-in">
+        <div class="section-label" style="margin-bottom:12px">Vamos conversar?</div>
+        <h2>Pronto para <span style="color:var(--red)">escalar?</span></h2>
+        <p>Se você é dono de restaurante, clínica, empresa local ou concessionária e quer crescer com marketing de verdade — sem achismo e com estratégia — fale com a 5G agora.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/5542999999999?text=Olá!%20Vim%20pelo%20site%20da%20Agência%205G%20e%20quero%20saber%20mais." class="btn-whatsapp" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Falar pelo WhatsApp
+          </a>
+          <a href="mailto:contato@agencia5g.com.br" class="btn-secondary">Enviar e-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="#hero" class="footer-logo">
+        <div class="footer-logo-icon">5G</div>
+        <span class="footer-logo-text">Agência <span>5G</span></span>
+      </a>
+      <div class="footer-info">
+        <p>Guarapuava, PR — Marketing, Performance e Automação</p>
+        <p style="font-size:12px;color:#555">© 2025 Agência 5G. Todos os direitos reservados.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#pilares">Serviços</a></li>
+        <li><a href="#retina">Metodologia</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('#navLinks a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${current}` ? '#fff' : '';
+      });
+    });
+  </script>
+</body>
+</html>
